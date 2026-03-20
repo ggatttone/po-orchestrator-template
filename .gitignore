@@ -1,0 +1,43 @@
+# Environment and credentials
+.env
+.mcp.json
+.claude/settings.local.json
+
+# Codex
+.codex/
+
+# Generated outputs
+analysis/
+briefings/*
+!briefings/.gitkeep
+outputs/*
+!outputs/.gitkeep
+transcripts/
+
+# Scripts with potential credentials
+scripts/
+
+# OneDrive MCP local build
+.mcp-servers/
+
+# Rollback files
+.rollback/
+
+# Temporary files
+tmp/
+.tmp/
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+!.vscode/settings.json
+*.swp
+*.swo
+
+# Node modules (if any MCP servers are built locally)
+node_modules/
