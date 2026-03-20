@@ -15,25 +15,61 @@ It uses an **orchestrator pattern**: a central file (`CLAUDE.md`) routes your re
 
 ## Architecture
 
+```mermaid
+graph TB
+    U["👤 Product Owner<br/><i>Natural Language + Slash Commands</i>"]
+
+    subgraph ORCHESTRATOR["CLAUDE.md — Orchestrator"]
+        R["Task Router<br/><i>Identifies intent → delegates to agent</i>"]
+    end
+
+    U --> R
+
+    subgraph AGENTS["8 Sub-Agents"]
+        A1["requirements-analyst<br/><i>Raw input → Requirements</i>"]
+        A2["jira-story-engineer<br/><i>Requirements → Stories</i>"]
+        A3["document-analyst<br/><i>Documents → Analysis</i>"]
+        A4["review-qa<br/><i>Consistency Checks</i>"]
+        A5["pm-support<br/><i>Planning & Priorities</i>"]
+        A6["stakeholder-comms<br/><i>Status Updates</i>"]
+        A7["sparring-partner<br/><i>Critical Thinking</i>"]
+        A8["workshop-designer<br/><i>Elicitation Packs</i>"]
+    end
+
+    R --> A1 & A2 & A3 & A4
+    R --> A5 & A6 & A7 & A8
+
+    subgraph CONTEXT["Context Layer"]
+        K["📚 Knowledge Base<br/><i>14 reference files</i>"]
+        E["📁 Epic Directories<br/><i>6 files per epic</i>"]
+        SR["📏 Shared Rules<br/><i>Quality gates</i>"]
+    end
+
+    AGENTS --> K & E & SR
+
+    subgraph MCP["🔌 MCP Servers"]
+        M1["Atlassian<br/>Jira + Confluence"]
+        M2["Trello"]
+        M3["OneDrive"]
+        M4["n8n"]
+    end
+
+    AGENTS -.-> M1 & M2 & M3 & M4
+
+    classDef user fill:#4A90D9,stroke:#2C5F8A,color:#fff,font-weight:bold
+    classDef orch fill:#F5A623,stroke:#C77D0A,color:#fff,font-weight:bold
+    classDef agent fill:#7B68EE,stroke:#5A4DB5,color:#fff
+    classDef ctx fill:#45B7D1,stroke:#2E8B9E,color:#fff
+    classDef mcp fill:#96CEB4,stroke:#6EA98C,color:#333
+
+    class U user
+    class R orch
+    class A1,A2,A3,A4,A5,A6,A7,A8 agent
+    class K,E,SR ctx
+    class M1,M2,M3,M4 mcp
 ```
-You (Product Owner)
-    |
-    v
-CLAUDE.md (Orchestrator)
-    |
-    +-- requirements-analyst    --> Workshop notes -> structured requirements
-    +-- jira-story-engineer     --> Requirements -> sprint-sized Jira stories
-    +-- document-analyst        --> Design docs -> structured analysis
-    +-- review-qa               --> Consistency checks across artifacts
-    +-- pm-support              --> Sprint prep, daily briefs, priority scoring
-    +-- stakeholder-comms       --> Audience-tailored status updates
-    +-- sparring-partner        --> Critical thinking, assumption challenging
-    +-- workshop-designer       --> Business elicitation packs & questionnaire analysis
-    |
-    +-- 18 Slash Commands       --> Quick access to common workflows
-    +-- Knowledge Base          --> Shared glossary, standards, governance
-    +-- Epic Directories        --> Context isolation per workstream
-```
+
+> See [docs/architecture-diagram.md](docs/architecture-diagram.md) for detailed diagrams including data flow and priority scoring algorithm.
 
 ## What you get
 
