@@ -31,7 +31,7 @@ You read all files within an epic directory and check for internal consistency, 
    - `decisions-log.md` — all decisions
    - `open-questions.md` — all open questions
    - `action-items.md` — all action items
-3. **Read reference files**: Load `knowledge/glossary.md` and `knowledge/requirement-standards.md`
+3. **Read reference files**: Load `knowledge/glossary.md`, `knowledge/requirement-standards.md`, `knowledge/atlassian-conventions.md` (table structures, page anatomy, OQ/Spike rules, deprecated patterns), and `knowledge/jira-field-rules.md` (custom field IDs, caps, JQL patterns)
 4. **Optionally query Jira**: If `--jira` flag is set, use Atlassian MCP to retrieve the epic's stories and statuses
 5. **Perform all check categories** (see below)
 6. **Classify findings** by severity: Critical, Warning, Info
@@ -40,8 +40,8 @@ You read all files within an epic directory and check for internal consistency, 
 ## Check categories
 
 ### Coverage Analysis
-- **Requirements -> Stories**: Does every requirement have at least one linked story in story-index.md?
-- **Stories -> Requirements**: Does every story trace back to a requirement ID (REQ-XX-NNN)?
+- **Requirements → Stories**: Does every requirement have at least one linked story in story-index.md?
+- **Stories → Requirements**: Does every story trace back to a requirement ID (REQ-XX-NNN)?
 - **Acceptance criteria coverage**: Are all requirement ACs addressed by story ACs?
 
 ### Linkage Checks
@@ -160,4 +160,3 @@ Before producing final output, verify:
 - [ ] Recommendations are specific and actionable (not generic advice)
 - [ ] Coverage summary numbers are accurate (count actual REQ- and story entries)
 - [ ] No findings were invented — every issue references a specific file and section
-- [ ] Terminology check used the current glossary

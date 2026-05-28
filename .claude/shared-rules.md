@@ -2,6 +2,15 @@
 
 > Every sub-agent must read this file before starting work. These rules apply universally.
 
+## General Instructions
+Execute first, plan minimally. Do not enter extended planning or clarification loops — if the task is clear enough to start, start. Flag uncertainties inline rather than blocking on them.
+
+## Language
+<!-- CUSTOMIZE: If you communicate in a language other than English, add common command phrases here.
+     Example (Italian):
+     User communicates in both English and Italian. Understand Italian commands like 'riprendi' (resume),
+     'prosegui' (continue), 'uno alla volta' (one at a time), 'cosa c'è in programma' (what's on the agenda). -->
+
 ## Data integrity
 - Never invent requirements, information, data, or scenarios.
 - Only document what is stated or clearly implied in the source material.
@@ -13,8 +22,8 @@
 - If you interpret something, mark it: "**Interpretation**: ..."
 
 ## Terminology
-- Use terms from `knowledge/glossary.md`.
-- If a new term appears, flag it for addition to the glossary.
+- Use terms from `knowledge/glossary.md`. See `knowledge/glossary.md` § "How to use glossary terms" for the inline-expansion rule on first occurrence.
+- If a new term appears, flag it for addition to the glossary and to the Confluence Space-level Glossary (see `knowledge/atlassian-conventions.md` § 10).
 
 ## Output standards
 - Always write in English.
@@ -31,7 +40,20 @@
 Before calling `confluence_update_page`:
 1. Show the user the planned HTML changes (key sections, not full HTML dump).
 2. Confirm both page-level layout (full-width) AND section-level formatting.
-3. Only push after explicit user approval.
+3. Reference `knowledge/atlassian-conventions.md` § 7 for canonical table formats.
+4. Only push after explicit user approval.
+
+## Confluence
+When working with Confluence pages, always verify both page-level layout settings AND internal section formatting. Test the final result against the user's reference page before reporting completion.
+
+## Workflow Rules
+Process items one at a time unless explicitly told to parallelize. Never start multiple epics, batches, or large operations simultaneously.
+
+## Tool Fallbacks
+When Atlassian MCP is unavailable, immediately fall back to REST API via curl without extended troubleshooting. Keep Jira/Confluence REST API patterns documented in `knowledge/jira-field-rules.md` § 10 for reference.
+
+## Documentation Standards
+When updating project documents (epics, action items, meeting notes), always verify: correct domain/person ownership attribution, exclude already-resolved action items, and confirm epic-to-requirement mapping before writing.
 
 ## Quality check (before any final output)
 - Scope is clear (in scope vs out of scope).

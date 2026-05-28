@@ -121,6 +121,7 @@ When the user provides input, route to the correct sub-agent based on the task t
 | Action items after workshop/meeting | `pm-support` | Epic context + `action-items.md` |
 | "Prepare elicitation pack", "business pre-read", "stakeholder questions before workshop" | `workshop-designer` | Epic context + `knowledge/elicitation-question-bank.md` |
 | "Show questionnaire results", "what did respondents say", "analyze responses" | `workshop-designer` (Mode 2) | Epic context + questionnaire data |
+| "Fetch from Outlook/Teams/SharePoint web", "download email", "read Teams chat", "fetch from web" | `web-fetcher` | Epic context + `knowledge/web-fetch-conventions.md` |
 
 **Routing rules**:
 1. Always identify which epic the task relates to. If unclear, ask.
@@ -143,8 +144,9 @@ When the user provides input, route to the correct sub-agent based on the task t
 | **PM Support** | `.claude/agents/pm-support.md` | Sprint planning, risks, meeting follow-up, daily/weekly planning, priority analysis |
 | **Stakeholder Comms** | `.claude/agents/stakeholder-comms.md` | Status updates, reports, communication drafts |
 | **Workshop Designer** | `.claude/agents/workshop-designer.md` | Mode 1: Business elicitation packs. Mode 2: Post-questionnaire analysis and pre-workshop briefings |
+| **Web Fetcher** | `.claude/agents/web-fetcher.md` | Fetch content from authenticated web sources (Outlook, Teams, SharePoint, OneDrive work, Confluence/Jira fallback) via Playwright MCP; read-only on the live web surface |
 
-**Active agents**: requirements-analyst, jira-story-engineer, sparring-partner, document-analyst, review-qa, pm-support, stakeholder-comms, workshop-designer
+**Active agents**: requirements-analyst, jira-story-engineer, sparring-partner, document-analyst, review-qa, pm-support, stakeholder-comms, workshop-designer, web-fetcher
 
 ---
 
@@ -171,6 +173,7 @@ When the user provides input, route to the correct sub-agent based on the task t
 | `/elicitation-pack` | `/elicitation-pack [epic-id] [--workshop-date YYYY-MM-DD] [--participants "..."] [--formbricks]` | Active |
 | `/questionnaire-results` | `/questionnaire-results [epic-id] [--update-epic]` | Active |
 | `/triage` | `/triage [epic-id]` | Active |
+| `/fetch-from-web` | `/fetch-from-web [source-type] [identifier] [--epic <epic-id>] [--since YYYY-MM-DD] [--until YYYY-MM-DD]` | Active |
 
 ---
 
@@ -188,7 +191,7 @@ Key rules:
 - Only change existing text when it is factually wrong
 - Every requirement must include a **Context** section with baseline analysis and dependency scan
 - Every `/new-requirement` automatically creates a **Jira story** under the epic
-- Confluence pages use the section-per-requirement layout (not the legacy 11-column table)
+- Confluence pages use the lightweight summary layout (see `knowledge/atlassian-conventions.md` § 8 for anatomy; deprecated patterns are listed there)
 
 **Full template and standards**: `knowledge/requirement-standards.md`
 
@@ -243,14 +246,22 @@ When producing Jira stories:
 - Decisions are captured separately.
 - Terminology matches your organisation's language (see `knowledge/glossary.md`).
 
+### Atlassian conventions
+
+Canonical conventions for Confluence + Jira live in `knowledge/atlassian-conventions.md` (OQ/spike classification, Confluence Changelog convention, inline link annotations, storage format and size strategy, spike workflow Done/Won't Do, 1:N linkage, table structures, page anatomy, governance, Space-level Glossary, keyword labels, title patterns per issue type, deprecated patterns).
+
+Jira field rules (custom field IDs, caps, formats, MoSCoW rejection, MD→ADF gotchas, JQL patterns) live in `knowledge/jira-field-rules.md`.
+
 ---
 
 ## 11) Knowledge Base Index
 
 | File | Contents |
 |---|---|
-| `knowledge/glossary.md` | Organisation and program terminology |
+| `knowledge/glossary.md` | Organisation and program terminology + inline-expansion rule for first-use |
 | `knowledge/requirement-standards.md` | Template and rules for writing requirements |
+| `knowledge/atlassian-conventions.md` | **Canonical** Confluence + Jira conventions (page anatomy, OQ/spike, table structures, title patterns, deprecated patterns) |
+| `knowledge/jira-field-rules.md` | **Canonical** Jira custom fields, value formats, caps, JQL patterns |
 | `knowledge/way-of-working.md` | Scrum, sprints, development blocks, stagegates |
 | `knowledge/governance.md` | Governance layers, communities, roles, decision authority |
 | `knowledge/systems-landscape.md` | Systems, integrations, MCP servers |
