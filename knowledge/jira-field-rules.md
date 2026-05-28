@@ -31,9 +31,9 @@ Date adopted: YYYY-MM-DD.
 ### `parent`
 String form (not object):
 ```json
-"parent": "PRJ-302"
+"parent": "PRJ-NNN"
 ```
-Object form `{"parent": {"key": "PRJ-302"}}` works on some endpoints but is inconsistent. Default to string.
+Object form `{"parent": {"key": "PRJ-NNN"}}` works on some endpoints but is inconsistent. Default to string.
 
 ### `assignee`
 - On **create issue**: account IDs of the form `712020:...` may fail intermittently. Use the email or display name.
@@ -125,7 +125,7 @@ See title patterns in `knowledge/atlassian-conventions.md` § 13.
 
 ```jql
 # Open spikes per epic (for merge-over-create audit)
-project = PRJ AND issuetype = Spike AND statusCategory != Done AND "Epic Link" = PRJ-302
+project = PRJ AND issuetype = Spike AND statusCategory != Done AND "Epic Link" = PRJ-NNN
 
 # Stories with empty Story field (regression flag)
 project = PRJ AND issuetype = Story AND cf[XXXXX] is EMPTY
